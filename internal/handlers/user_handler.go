@@ -106,12 +106,19 @@ func Login(client *ent.Client) fiber.Handler {
 				})
 		}
 
+		t, err := utils.GenerateJWT(u.ID, u.Name)
+		if err != nil {
+			return c.
+				Status(fiber.StatusInternalServerError).
+				JSON(fiber.Map{
+					"error": apperror.ErrInternalServerError,
+				})
+		}
+
 		return c.
 			Status(fiber.StatusOK).
 			JSON(fiber.Map{
-				"id":    u.ID,
-				"email": u.Email,
-				"name":  u.Name,
+				"token": t,
 			})
 	}
 }

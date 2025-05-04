@@ -9,4 +9,5 @@ var (
 	ErrEmailExists         = errors.New("email already exists")
 	ErrUserNotFound        = errors.New("user not found")
 	ErrInternalServerError = errors.New("internal server error")
+	ErrUnauthorized        = errors.New("invalid or expired token")
 )

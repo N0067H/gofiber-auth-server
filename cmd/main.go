@@ -6,6 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/n0067h/gofiber-auth-server/internal/config"
 	"github.com/n0067h/gofiber-auth-server/internal/db"
+	"github.com/n0067h/gofiber-auth-server/internal/middlewares"
 	"github.com/n0067h/gofiber-auth-server/internal/routes"
 )
 
@@ -28,6 +29,10 @@ func main() {
 	app := fiber.New()
 
 	routes.SetupRoutes(app, db.Get())
+
+	app.Use(middlewares.JWTGuard())
+
+	routes.SetupRestrictedRoutes(app, db.Get())
 
 	log.Fatal(app.Listen(":3000"))
 }

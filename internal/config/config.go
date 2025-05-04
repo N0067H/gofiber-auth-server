@@ -8,9 +8,10 @@ import (
 )
 
 type Config struct {
-	DBUser string
-	DBPass string
-	DBName string
+	DBUser    string
+	DBPass    string
+	DBName    string
+	JWTSecret string
 }
 
 var cfg *Config
@@ -22,9 +23,10 @@ func Init() {
 	}
 
 	cfg = &Config{
-		DBUser: os.Getenv("DB_USER"),
-		DBPass: os.Getenv("DB_PASS"),
-		DBName: os.Getenv("DB_NAME"),
+		DBUser:    os.Getenv("DB_USER"),
+		DBPass:    os.Getenv("DB_PASS"),
+		DBName:    os.Getenv("DB_NAME"),
+		JWTSecret: os.Getenv("JWT_SECRET"),
 	}
 }
 
