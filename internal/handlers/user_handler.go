@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v2"
 	"github.com/n0067h/gofiber-auth-server/ent"
 	"github.com/n0067h/gofiber-auth-server/internal/apperror"
 	"github.com/n0067h/gofiber-auth-server/internal/dto"
@@ -10,9 +10,9 @@ import (
 )
 
 func Register(client *ent.Client) fiber.Handler {
-	return func(c fiber.Ctx) error {
+	return func(c *fiber.Ctx) error {
 		var body dto.RegisterRequest
-		if err := c.Bind().Body(&body); err != nil {
+		if err := c.BodyParser(&body); err != nil {
 			return c.
 				Status(fiber.StatusBadRequest).
 				JSON(fiber.Map{
@@ -68,9 +68,10 @@ func Register(client *ent.Client) fiber.Handler {
 }
 
 func Login(client *ent.Client) fiber.Handler {
-	return func(c fiber.Ctx) error {
+	return func(c *fiber.Ctx) error {
 		var body dto.LoginRequest
-		if err := c.Bind().Body(&body); err != nil {
+
+		if err := c.BodyParser(&body); err != nil {
 			return c.
 				Status(fiber.StatusBadRequest).
 				JSON(fiber.Map{

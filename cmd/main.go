@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v2"
 	"github.com/n0067h/gofiber-auth-server/internal/config"
 	"github.com/n0067h/gofiber-auth-server/internal/db"
 	"github.com/n0067h/gofiber-auth-server/internal/routes"
